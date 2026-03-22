@@ -93,3 +93,32 @@ ORDER BY Monthly_Revenue DESC;
 -- ======================================================================
 -- END OF SCRIPT
 -- ======================================================================
+-- ----------------------------------------------------------------------
+-- PHASE 3: ADVANCED BUSINESS INSIGHTS
+-- ----------------------------------------------------------------------
+
+-- 1. Customer Loyalty: Finding the "Whales" (Top 5 Spenders)
+-- Logic: We group by ID and sum the total spend to find high-value clients.
+SELECT 
+    `Customer ID`, 
+    SUM(Quantity * Price) AS Total_Spent
+FROM clean_retail_sales
+GROUP BY `Customer ID`
+ORDER BY Total_Spent DESC
+LIMIT 5;
+
+-- 2. Product Popularity vs. Revenue
+-- Logic: We compare 'Quantity' (Volume) vs 'Total Revenue' (Value).
+SELECT 
+    Description, 
+    SUM(Quantity) AS Total_Quantity_Sold,
+    SUM(Quantity * Price) AS Total_Revenue
+FROM clean_retail_sales
+GROUP BY Description
+ORDER BY Total_Quantity_Sold DESC
+LIMIT 10;
+-- ======================================================================
+-- END OF SCRIPT
+-- ======================================================================
+
+
