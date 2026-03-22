@@ -17,8 +17,8 @@ Instead of deleting data, I created a **SQL View** (`clean_retail_sales`) to fil
 - **Date Standardization:** Handled multiple date formats using `STR_TO_DATE` and `CASE` logic to ensure 100% data accuracy.
 
 ## 📊 Business Key Findings
-- **Top Product:** The 'REGENCY CAKESTAND 3 TIER' is the leading revenue driver ($21,000+).
-- **Peak Season:** December is the most profitable month, generating over **$569,000** in revenue—nearly triple the amount of the second-highest month. This highlights a heavy reliance on holiday shopping trends.
-- **Data Integrity:** Resolved a critical date-formatting issue that was causing $209,000 in sales to be misclassified as "NULL."
-- **Customer Segmentation:** Identified top "Whale" customers (B2B clients); Top Customer ID `18102` contributed **$27,834** in revenue.
-- **Inventory Insight:** High-volume items (Quantity) do not always equal high-revenue items. This suggests a "Loss Leader" strategy where cheap items drive traffic to expensive ones.
+- Top Product: The 'REGENCY CAKESTAND 3 TIER' is the leading revenue driver ($21,000+).
+- Peak Season: December is the most profitable month, generating over **$569,000** in revenue—nearly triple the amount of the second-highest month. This highlights a heavy reliance on holiday shopping trends.
+- Data Integrity: Resolved a critical date-formatting issue that was causing $209,000 in sales to be misclassified as "NULL."
+- Customer Segmentation: Identified top "Whale" customers (B2B clients); Top Customer ID `18102` contributed **$27,834** in revenue.
+- Product Strategy: Analysis revealed a gap between volume and value. For example, "World War 2 Gliders" sell in high volume (5,000+ units) but contribute low revenue, whereas "T-Light Holders" act as primary revenue drivers. This suggests different marketing strategies are needed for different inventory types.
