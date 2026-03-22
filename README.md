@@ -25,5 +25,12 @@ To ensure data integrity, I performed a row-count reconciliation between the sou
 
 ---
 
-## 🔍 Phase 2: Data Auditing (In Progress)
-Current focus is on "Data Profiling" to identify outliers, negative values, and inconsistencies before applying business logic.
+## 🔍 Phase 2: Data Auditing & Cleaning
+In this phase, I identified outliers and established cleaning parameters to ensure the accuracy of the final analysis.
+
+**Key Cleaning Logic:**
+- **Outlier Handling:** Identified extreme quantity values (±80,995) and non-standard pricing.
+- **Data Filtering:** Created a SQL `VIEW` to isolate valid transactions by filtering out:
+  - Negative quantities (Returns/Cancellations).
+  - Zero/Negative prices (Adjustments/Gaps).
+  - Null/Blank Customer IDs (to focus on identified customer behavior).
