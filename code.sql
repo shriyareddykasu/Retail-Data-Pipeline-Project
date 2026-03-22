@@ -108,14 +108,15 @@ ORDER BY Total_Spent DESC
 LIMIT 5;
 
 -- 2. Product Popularity vs. Revenue
--- Logic: We compare 'Quantity' (Volume) vs 'Total Revenue' (Value).
+-- Why: To see which items are "Volume Drivers" (Sold a lot) 
+-- vs "Revenue Drivers" (Made the most money).
 SELECT 
     Description, 
-    SUM(Quantity) AS Total_Quantity_Sold,
+    SUM(Quantity) AS Total_Units_Sold,
     SUM(Quantity * Price) AS Total_Revenue
 FROM clean_retail_sales
 GROUP BY Description
-ORDER BY Total_Quantity_Sold DESC
+ORDER BY Total_Units_Sold DESC
 LIMIT 10;
 -- ======================================================================
 -- END OF SCRIPT
