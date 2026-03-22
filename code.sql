@@ -25,7 +25,19 @@ FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
+-- ======================================================================
+-- PHASE 2: DATA CLEANING (CREATING A SALES VIEW)
+-- ======================================================================
+-- We create a VIEW to filter out 'trash' data without deleting it from the source.
+-- Filters: Only positive quantities, prices > 0, and valid Customer IDs.
 
+CREATE OR REPLACE VIEW cleaned_retail_data AS
+SELECT *
+FROM online_retail
+WHERE Quantity > 0 
+  AND Price > 0 
+  AND `Customer ID` IS NOT NULL 
+  AND `Customer ID` <> '';
 -- 5. VERIFICATION
 -- This should return exactly 541,910.
 SELECT COUNT(*) AS Total_Rows_Loaded FROM online_retail;
