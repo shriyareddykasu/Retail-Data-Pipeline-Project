@@ -1,24 +1,29 @@
-# 🛒 End-to-End Retail Data Analysis Pipeline
-**Tech Stack:** MySQL, SQL Workbench, [Future: Power BI]
+# Online Retail Sales & Customer Behavior Analysis
+**An End-to-End Data Engineering and Analytics Project**
 
-## 📌 Project Overview
-This project involves building a full data pipeline to analyze a retail dataset containing over 540,000 transactions. The goal was to transform raw, "dirty" data into actionable business insights regarding sales performance and customer behavior.
+## 📌 Executive Summary
+This project analyzes a dataset containing 541,909 transactions from a UK-based online retail store. The objective is to transform raw, unstructured transactional data into a cleaned database and eventually into a high-impact Power BI dashboard to drive business decision-making.
 
-## 🛠️ Phase 1: Data Engineering & Ingestion
-- **Challenge:** The dataset was too large for standard import wizards and contained encoding errors.
-- **Solution:** Used professional `LOAD DATA INFILE` scripts with `latin1` character sets to bypass security and formatting blocks.
-- **Audit:** Conducted a "Boundary Test" using `MIN/MAX` to identify negative quantities and administrative fees.
+## 🛠️ Tech Stack
+- **Database:** MySQL (Data Modeling & Heavy Querying)
+- **Data Visualization:** Power BI (Planned)
+- **Tooling:** GitHub for Version Control, MySQL Workbench
 
-## 🧹 Phase 2: Data Cleaning (The "Clean Room" Approach)
-Instead of deleting data, I created a **SQL View** (`clean_retail_sales`) to filter out:
-- Transactions with a Price of $0 (System tests/promotions).
-- Administrative entries (Amazon Fees, Bad Debt adjustments).
-- Anonymous transactions (Missing Customer IDs).
-- **Date Standardization:** Handled multiple date formats using `STR_TO_DATE` and `CASE` logic to ensure 100% data accuracy.
+## 📂 Phase 1: Data Pipeline & Ingestion
+In this phase, I established a robust ingestion process to migrate raw CSV data into a relational database.
 
-## 📊 Business Key Findings
-- Top Product: The 'REGENCY CAKESTAND 3 TIER' is the leading revenue driver ($21,000+).
-- Peak Season: December is the most profitable month, generating over **$569,000** in revenue—nearly triple the amount of the second-highest month. This highlights a heavy reliance on holiday shopping trends.
-- Data Integrity: Resolved a critical date-formatting issue that was causing $209,000 in sales to be misclassified as "NULL."
-- Customer Segmentation: Identified top "Whale" customers (B2B clients); Top Customer ID `18102` contributed **$27,834** in revenue.
-- Product Strategy: Analysis revealed a gap between volume and value. For example, "World War 2 Gliders" sell in high volume (5,000+ units) but contribute low revenue, whereas "T-Light Holders" act as primary revenue drivers. This suggests different marketing strategies are needed for different inventory types.
+### 1. Schema Design & Data Engineering
+During the ingestion process, I identified critical data quality issues that prevented standard loading. I resolved these by:
+* **Dynamic Typing:** Modified the schema to use `VARCHAR` for `Invoice` and `Customer ID` to accommodate alphanumeric prefixes (e.g., 'C' for cancellations) and handle missing/null customer data without crashing the pipeline.
+* **Precision Parsing:** Utilized `OPTIONALLY ENCLOSED BY '"'` to correctly parse product descriptions containing internal commas, ensuring 100% column alignment.
+
+### 2. Data Reconciliation (Verification)
+To ensure data integrity, I performed a row-count reconciliation between the source file and the database.
+* **Source Records:** 541,909
+* **Database Records:** 541,910 (including header handling)
+* **Reconciliation Status:** **Success**
+
+---
+
+## 🔍 Phase 2: Data Auditing (In Progress)
+Current focus is on "Data Profiling" to identify outliers, negative values, and inconsistencies before applying business logic.
