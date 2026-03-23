@@ -119,6 +119,26 @@ SELECT
     (SELECT COUNT(*) FROM cleaned_retail_data) AS Total_Transactions,
     (SELECT SUM(Quantity * Price) FROM cleaned_retail_data) AS Total_Project_Revenue,
     (SELECT COUNT(DISTINCT Country) FROM cleaned_retail_data) AS Markets_Served;
+-- ==========================================================
+-- PHASE 3.5: RETURNS & LOSS ANALYSIS
+-- ==========================================================
+-- Calculating Total Value of Cancellations ('C' Invoices)
+SELECT 
+    SUM(Quantity * Price) AS Total_Loss_Value,
+    COUNT(*) AS Return_Transaction_Count
+FROM online_retail
+WHERE Invoice LIKE 'C%';
+
+-- Identifying the most returned products (Potential Quality Issues)
+SELECT 
+    Description, 
+    ABS(SUM(Quantity)) AS Total_Units_Returned,
+    ABS(SUM(Quantity * Price)) AS Total_Refund_Amount
+FROM online_retail
+WHERE Invoice LIKE 'C%'
+GROUP BY Description
+ORDER BY Total_Refund_Amount DESC
+LIMIT 5;
 
 -- This concludes the SQL Data Cleaning & Analysis Phase.
 -- The data is now ready for Visualization (Phase 4).
