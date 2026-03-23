@@ -109,3 +109,9 @@ FROM cleaned_retail_data
 GROUP BY Country
 ORDER BY Total_Revenue DESC
 LIMIT 10;
+-- PHASE 3.4: EXECUTIVE SUMMARY
+-- This provides a high-level view of the business health.
+SELECT 
+    (SELECT COUNT(*) FROM cleaned_retail_data) AS Total_Transactions,
+    (SELECT SUM(Quantity * Price) FROM cleaned_retail_data) AS Total_Project_Revenue,
+    (SELECT COUNT(DISTINCT Country) FROM cleaned_retail_data) AS Markets_Served;
