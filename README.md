@@ -34,3 +34,5 @@ In this phase, I identified outliers and established cleaning parameters to ensu
   - Negative quantities (Returns/Cancellations).
   - Zero/Negative prices (Adjustments/Gaps).
   - Null/Blank Customer IDs (to focus on identified customer behavior).
+* **Inconsistent Data Handling:** Detected a 60/40 split in date formatting (YYYY-MM-DD vs. MM/DD/YY). 
+* **Data Standardization:** Implemented a multi-step SQL transformation using `STR_TO_DATE` and conditional logic (`LIKE`) to unify 541k+ rows into a single `DATETIME` format without data loss.
