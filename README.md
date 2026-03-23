@@ -47,3 +47,6 @@ In this phase, I translated the cleaned data into actionable business intelligen
 **2. Customer Segmentation:**
 - **The "Whale":** Identified Customer ID 14646 as the top spender (~$280k).
 - **The "Loyalist":** Identified Customer ID 14911 as the most frequent shopper with 201 distinct orders, highlighting a high-retention segment of the customer base.
+**3. Geographic Insights:**
+- **Market Dynamics:** While the UK is the largest market by total volume, the Netherlands and Australia represent "Wholesale" hubs with significantly higher average spend per customer (~$31k vs ~$1.8k in the UK).
+- **Strategic Recommendation:** Focus retention efforts on high-value international wholesale clusters.
