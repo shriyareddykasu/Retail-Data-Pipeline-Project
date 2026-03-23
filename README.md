@@ -50,7 +50,11 @@ In this phase, I translated the cleaned data into actionable business intelligen
 **3. Geographic Insights:**
 - **Market Dynamics:** While the UK is the largest market by total volume, the Netherlands and Australia represent "Wholesale" hubs with significantly higher average spend per customer (~$31k vs ~$1.8k in the UK).
 - **Strategic Recommendation:** Focus retention efforts on high-value international wholesale clusters.
-
+**4. Returns & Quality Control:**
+- **Net Revenue Impact:** Identified ~$1.05M in returned goods, representing approximately 11.8% of gross sales.
+- **Product Feedback:** Isolated top-returned items for potential quality-control review or shipping-damage investigation.
+- **Data Integrity:** Ensured that the final business analysis used "Net" figures by excluding cancellations from the primary sales view.
+  
 ## 🏆 SQL Phase Results
 After cleaning and processing 541k+ rows of data, the final dataset represents:
 * **Total Transactions:** 397,885 (Cleaned)
