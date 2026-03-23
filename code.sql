@@ -96,3 +96,16 @@ FROM cleaned_retail_data
 GROUP BY `Customer ID`
 ORDER BY Total_Spent DESC
 LIMIT 10;
+
+-- 3. Geographic Revenue Distribution
+-- This helps identify which markets are "Retail" (High volume of people) 
+-- and which are "Wholesale" (High spend per person).
+SELECT 
+    Country, 
+    COUNT(DISTINCT `Customer ID`) AS Unique_Customers, 
+    SUM(Quantity * Price) AS Total_Revenue,
+    SUM(Quantity * Price) / COUNT(DISTINCT `Customer ID`) AS Avg_Spend_Per_Customer
+FROM cleaned_retail_data
+GROUP BY Country
+ORDER BY Total_Revenue DESC
+LIMIT 10;
