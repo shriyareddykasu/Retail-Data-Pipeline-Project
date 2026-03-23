@@ -50,14 +50,17 @@ In this phase, I translated the cleaned data into actionable business intelligen
 **3. Geographic Insights:**
 - **Market Dynamics:** While the UK is the largest market by total volume, the Netherlands and Australia represent "Wholesale" hubs with significantly higher average spend per customer (~$31k vs ~$1.8k in the UK).
 - **Strategic Recommendation:** Focus retention efforts on high-value international wholesale clusters.
-**4. Returns & Quality Control:**
-- **Net Revenue Impact:** Identified ~$1.05M in returned goods, representing approximately 11.8% of gross sales.
-- **Product Feedback:** Isolated top-returned items for potential quality-control review or shipping-damage investigation.
-- **Data Integrity:** Ensured that the final business analysis used "Net" figures by excluding cancellations from the primary sales view.
+**4. Returns & Net Revenue Analysis:**
+- **Gross vs. Net:** Identified a gross revenue of ~$8.9M with a cancellation/return volume of ~$1.05M.
+- **Return Rate:** Approximately 11.8% of total transaction value was returned, primarily driven by high-volume items like the "Regency Cakestand."
+- **Data Integrity:** Used the `WHERE Invoice NOT LIKE 'C%'` filter in final reporting to ensure business growth metrics were based on successful sales only.
   
-## 🏆 SQL Phase Results
-After cleaning and processing 541k+ rows of data, the final dataset represents:
-* **Total Transactions:** 397,885 (Cleaned)
-* **Total Revenue:** $8,911,425.90
-* **Global Presence:** 37 Countries
-* **Data Quality:** 100% consistency in date formatting and null-value handling.
+## 🏆 Final SQL Project Metrics
+| Metric | Value |
+| :--- | :--- |
+| **Total Processed Rows** | 397,885 |
+| **Gross Revenue** | $8,911,425.90 |
+| **Total Return Value** | ($1,053,524.39) |
+| **Net Revenue** | ~$7,857,901.51 |
+| **Unique Customers** | 4,339 |
+| **Global Reach** | 37 Countries |
