@@ -37,9 +37,13 @@ In this phase, I identified outliers and established cleaning parameters to ensu
 * **Inconsistent Data Handling:** Detected a 60/40 split in date formatting (YYYY-MM-DD vs. MM/DD/YY). 
 * **Data Standardization:** Implemented a multi-step SQL transformation using `STR_TO_DATE` and conditional logic (`LIKE`) to unify 541k+ rows into a single `DATETIME` format without data loss.
 
+
 ## 📈 Phase 3: Business Insights
 In this phase, I translated the cleaned data into actionable business intelligence.
 
 **1. Product Performance:**
 - **Top Performer:** "PAPER CRAFT, LITTLE BIRDIE" generated the highest revenue (~$168k).
 - **Volume vs. Value:** Identified that the top-selling products are high-volume items, indicating a stable, mass-market customer base rather than reliance on a few luxury sales.
+**2. Customer Segmentation:**
+- **The "Whale":** Identified Customer ID 14646 as the top spender (~$280k).
+- **The "Loyalist":** Identified Customer ID 14911 as the most frequent shopper with 201 distinct orders, highlighting a high-retention segment of the customer base.
