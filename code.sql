@@ -77,7 +77,7 @@ WHERE Quantity > 0
 -- ======================================================================
 -- PHASE 3: BUSINESS ANALYSIS
 -- ======================================================================
--- 1. Top 10 Products by Revenue (Excluding non-product entries like Postage)
+-- 3.1. Top 10 Products by Revenue (Excluding non-product entries like Postage)
 SELECT 
     Description, 
     SUM(Quantity) AS Total_Quantity_Sold, 
@@ -87,7 +87,9 @@ WHERE Description NOT LIKE '%POSTAGE%'
 GROUP BY Description
 ORDER BY Total_Revenue DESC
 LIMIT 10;
--- 2. Top 10 Customers by Revenue and Order Frequency
+-- ==========================================================
+-- 3.2 Top 10 Customers by Revenue and Order Frequency
+-- ==========================================================
 SELECT 
     `Customer ID`, 
     COUNT(DISTINCT Invoice) AS Total_Orders, 
@@ -96,8 +98,9 @@ FROM cleaned_retail_data
 GROUP BY `Customer ID`
 ORDER BY Total_Spent DESC
 LIMIT 10;
-
--- 3. Geographic Revenue Distribution
+-- ==========================================================
+-- 3.3 Geographic Revenue Distribution
+-- ==========================================================
 -- This helps identify which markets are "Retail" (High volume of people) 
 -- and which are "Wholesale" (High spend per person).
 SELECT 
@@ -109,9 +112,13 @@ FROM cleaned_retail_data
 GROUP BY Country
 ORDER BY Total_Revenue DESC
 LIMIT 10;
--- PHASE 3.4: EXECUTIVE SUMMARY
--- This provides a high-level view of the business health.
+-- ==========================================================
+-- PHASE 3.4: EXECUTIVE SUMMARY (Final Project Metrics)
+-- ==========================================================
 SELECT 
     (SELECT COUNT(*) FROM cleaned_retail_data) AS Total_Transactions,
     (SELECT SUM(Quantity * Price) FROM cleaned_retail_data) AS Total_Project_Revenue,
     (SELECT COUNT(DISTINCT Country) FROM cleaned_retail_data) AS Markets_Served;
+
+-- This concludes the SQL Data Cleaning & Analysis Phase.
+-- The data is now ready for Visualization (Phase 4).
