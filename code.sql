@@ -41,3 +41,36 @@ WHERE Quantity > 0
 -- 5. VERIFICATION
 -- This should return exactly 541,910.
 SELECT COUNT(*) AS Total_Rows_Loaded FROM online_retail;
+-- ======================================================================
+-- PHASE 2.2: HANDLING INCONSISTENT DATE FORMATS
+-- ======================================================================
+-- The dataset contained mixed formats (YYYY-MM-DD and MM/DD/YY).
+-- We used a temporary column to standardize both formats before replacing the original.
+
+-- 1. Create temporary holder
+ALTER TABLE online_retail ADD COLUMN Temp_Date DATETIME;
+
+-- 2. Standardize 'Dash' format (YYYY-MM-DD)
+UPDATE online_retail 
+SET Temp_Date = STR_TO_DATE(InvoiceDate, '%Y-%m-%d %H:%i')
+WHERE InvoiceDate LIKE '%-%';
+
+-- 3. Standardize 'Slash' format (MM/DD/YY)
+UPDATE online_retail 
+SET Temp_Date = STR_TO_DATE(InvoiceDate, '%m/%d/%y %H:%i')
+WHERE InvoiceDate LIKE '%/%';
+
+-- 4. Replace the old column with the cleaned version
+ALTER TABLE online_retail DROP COLUMN InvoiceDate;
+ALTER TABLE online_retail RENAME COLUMN Temp_Date TO InvoiceDate;
+
+-- 5. Refresh the Cleaned View to use the new DATETIME column
+CREATE OR REPLACE VIEW cleaned_retail_data AS
+SELECT 
+    Invoice, StockCode, Description, Quantity, 
+    InvoiceDate, Price, `Customer ID`, Country
+FROM online_retail
+WHERE Quantity > 0 
+  AND Price > 0 
+  AND `Customer ID` IS NOT NULL 
+  AND `Customer ID` <> '';
