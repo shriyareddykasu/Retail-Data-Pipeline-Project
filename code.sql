@@ -87,3 +87,12 @@ WHERE Description NOT LIKE '%POSTAGE%'
 GROUP BY Description
 ORDER BY Total_Revenue DESC
 LIMIT 10;
+-- 2. Top 10 Customers by Revenue and Order Frequency
+SELECT 
+    `Customer ID`, 
+    COUNT(DISTINCT Invoice) AS Total_Orders, 
+    SUM(Quantity * Price) AS Total_Spent
+FROM cleaned_retail_data
+GROUP BY `Customer ID`
+ORDER BY Total_Spent DESC
+LIMIT 10;
