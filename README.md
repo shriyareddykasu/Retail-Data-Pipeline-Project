@@ -50,3 +50,10 @@ In this phase, I translated the cleaned data into actionable business intelligen
 **3. Geographic Insights:**
 - **Market Dynamics:** While the UK is the largest market by total volume, the Netherlands and Australia represent "Wholesale" hubs with significantly higher average spend per customer (~$31k vs ~$1.8k in the UK).
 - **Strategic Recommendation:** Focus retention efforts on high-value international wholesale clusters.
+
+## 🏆 SQL Phase Results
+After cleaning and processing 541k+ rows of data, the final dataset represents:
+* **Total Transactions:** 397,885 (Cleaned)
+* **Total Revenue:** $8,911,425.90
+* **Global Presence:** 37 Countries
+* **Data Quality:** 100% consistency in date formatting and null-value handling.
