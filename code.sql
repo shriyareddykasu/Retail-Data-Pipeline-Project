@@ -74,3 +74,16 @@ WHERE Quantity > 0
   AND Price > 0 
   AND `Customer ID` IS NOT NULL 
   AND `Customer ID` <> '';
+-- ======================================================================
+-- PHASE 3: BUSINESS ANALYSIS
+-- ======================================================================
+-- 1. Top 10 Products by Revenue (Excluding non-product entries like Postage)
+SELECT 
+    Description, 
+    SUM(Quantity) AS Total_Quantity_Sold, 
+    SUM(Quantity * Price) AS Total_Revenue
+FROM cleaned_retail_data
+WHERE Description NOT LIKE '%POSTAGE%'
+GROUP BY Description
+ORDER BY Total_Revenue DESC
+LIMIT 10;
